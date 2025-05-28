@@ -1,6 +1,7 @@
 local L = AceLibrary("AceLocale-2.2"):new("NotGrid")
 NotGrid = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0")
 NotGridOptions = {} -- After the addon is fully initialized WoW will fill this up with its saved variables if any
+NotGridProfiles = NotGridProfiles or {} -- This will store the different configuration profiles
 
 function NotGrid:OnInitialize()
 	self.HealComm = AceLibrary("HealComm-1.0")

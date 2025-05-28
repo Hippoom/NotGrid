@@ -2,7 +2,7 @@
 ## Title: NotGrid |cff7fff7f -Ace2-|r
 ## Notes: It's Not Grid
 ## Notes-ruRU: Это не Grid
-## SavedVariablesPerCharacter: NotGridOptions
+## SavedVariablesPerCharacter: NotGridOptions, NotGridProfiles
 
 Libs\AceLibrary\AceLibrary.lua
 Libs\AceLocale-2.2\AceLocale-2.2.lua
