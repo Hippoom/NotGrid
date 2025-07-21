@@ -193,7 +193,11 @@ function SlashCmdList.NOTGRID(msg, editbox)
 
 		if action == "save" then
 			if profileName then
-				NotGridProfiles = NotGridProfiles or {}
+				-- Validate that profiles table exists before saving
+				if not NotGridProfiles then
+					DEFAULT_CHAT_FRAME:AddMessage("NotGrid: Error - Profile system not initialized!")
+					return
+				end
 				NotGridProfiles[profileName] = deepcopy(NotGrid.o)
 				DEFAULT_CHAT_FRAME:AddMessage("NotGrid profile '" .. profileName .. "' saved.")
 			else
@@ -201,7 +205,12 @@ function SlashCmdList.NOTGRID(msg, editbox)
 			end
 		elseif action == "load" then
 			if profileName then
-				if NotGridProfiles and NotGridProfiles[profileName] then
+				-- Validate that profiles table exists before loading
+				if not NotGridProfiles then
+					DEFAULT_CHAT_FRAME:AddMessage("NotGrid: Error - Profile system not initialized!")
+					return
+				end
+				if NotGridProfiles[profileName] then
 					for k in pairs(NotGrid.o) do NotGrid.o[k] = nil end
 					for k, v in pairs(NotGridProfiles[profileName]) do NotGrid.o[k] = deepcopy(v) end
 					NotGrid:SetDefaultOptions()
@@ -215,7 +224,12 @@ function SlashCmdList.NOTGRID(msg, editbox)
 			end
 		elseif action == "delete" then
 			if profileName then
-				if NotGridProfiles and NotGridProfiles[profileName] then
+				-- Validate that profiles table exists before deleting
+				if not NotGridProfiles then
+					DEFAULT_CHAT_FRAME:AddMessage("NotGrid: Error - Profile system not initialized!")
+					return
+				end
+				if NotGridProfiles[profileName] then
 					NotGridProfiles[profileName] = nil
 					DEFAULT_CHAT_FRAME:AddMessage("NotGrid profile '" .. profileName .. "' deleted.")
 				else
@@ -225,7 +239,11 @@ function SlashCmdList.NOTGRID(msg, editbox)
 				DEFAULT_CHAT_FRAME:AddMessage("Usage: /ng profile delete <profilename>")
 			end
 		elseif action == "list" then
-			NotGridProfiles = NotGridProfiles or {}
+			-- Validate that profiles table exists before listing
+			if not NotGridProfiles then
+				DEFAULT_CHAT_FRAME:AddMessage("NotGrid: Error - Profile system not initialized!")
+				return
+			end
 			local profileCount = 0
 			local profileList = ""
 			for name in pairs(NotGridProfiles) do
